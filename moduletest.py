@@ -208,6 +208,9 @@ def seggregator(path, random_id):
         json.dump(json_datas, f)
         # f.write(str(json_datas))
 
+    with open("jsons_all_bill/"+str(random_id)+'.json', 'w') as f:
+        json.dump(json_datas, f)
+
     for h in extracts:
         print('started hospitals')
 
@@ -247,6 +250,7 @@ def seggregator(path, random_id):
     print('112: ' + hospital_)
     for i in range(len(document_names)):
         print(document_names[i] + '\n')
+        print("sg dc:",document_names[i] + '\n')
         if document_names[i] == 'unknown':
             if len(document_names) - 1 > i > 0:
                 if document_names[i - 1] == document_names[i + 1]:
@@ -294,6 +298,8 @@ def seggregator(path, random_id):
 
     print('175')
     print(ress)
+    with open("jsons_result/"+str(random_id)+'.json', 'w') as f:
+        json.dump(ress, f)
 
     # print("final: ", documents_indexes_dict) #new code dict
     # print(documents)
