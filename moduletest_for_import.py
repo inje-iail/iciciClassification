@@ -87,6 +87,7 @@ def hospitalfinder(txt: str):
     elif txt.lower().replace(" ", "").__contains__('06aafca0130m1z1') or txt.lower().replace(" ", "").__contains__(
             '06aafca0130m121'):
         hospital_local = 'artemis'
+
     elif txt.lower().replace(" ", "").__contains__('miot'):
         hospital_local = 'miotinternational'
     elif txt.lower().replace(" ", "").__contains__('rubyhallclinic') or txt.lower().replace(" ", "").__contains__(
@@ -3386,7 +3387,7 @@ def classifier(txt: str, c: int, hosp: str,j,randomid):
                                "dischargemedication", "dischargerecommendation", "treatmentadvice", "followup",
                                "dateofadmission", "operationnote", "treatmentgiven", "semiliquid",
                                "dischargecard", "dischargeticket", "doa", "specialinvestigation", "treatmentgiven",
-                               "treatmentadvised", "capidreview", "investigations", "blood", "treatmentised", "dod","pasthistory"],
+                               "treatmentadvised", "capidreview", "investigations", "blood", "treatmentised", "dod"],
             "billsummary": ["billsummary", "dischargebill", "qty", "amount", "totalamount",
                             "qty", "item", "netamount"],
             "billdetails": ["billofsupplyinpatientbill", "netbillamount", "payeramount", "paymentmode" "summary",
@@ -3406,14 +3407,21 @@ def classifier(txt: str, c: int, hosp: str,j,randomid):
             "labreport": ["report", "departmentof", "laboratorymedicine", "methodused", "testname", "scans&laboratory",
                           "scanno", "report", "radiologist", "mri", "observations",
                           "reportedon", "reportedby", "investigation", "laboratory", "ultrasoundfor", "urine",
-                          "testdone","antibiotic","normalrange","specimentype"],
+                          "testdone","antibiotic","normalrange","specimentype","sampleid","standardoperatorid",
+                          "reactiveproteintest", "chestradiograph", "bothlungfields","dopplermeasurements","mitralvalve"
+                          ],
             "cashless": ["cashless", "authorization", "tobefilled", "nameofthetratingdoctor", "declaration",
                          "qualification", "expectedcostofinvestigation", "costofimplants",
                          "expectedcostofhospitalization",
                          "natureofillness", "detailsofpatientadmitted", "mandatorypasthistory",
                          "roomtype"],
             "authorizationletter": ["cashlessauthorizationletter", "claimnumber"],
-            "prescription": ["capsule", "oral", "dose", "prescription", "duration"],
+            "prescription": ["capsule", "oral", "dose", "prescription", "duration", "ciproduc", "soomg", "ceproduc",
+                             "histaben", "amypres", "fomili", "ainsweet", "blavani", "cannula", 'washermenpet', "frcp",
+                             "capsule", "oral", "dose", "prescription", "duration", "edervit", "frcp",
+                             "medicineorders", "drugsensitivity", "omnacortil", 'ferinject', "bekalin",
+                             "sherofmed", "prelumbar", "backino", "pericurial", "culoscess", "penicual", "pugsout",
+                             ],
             "policyidcard": ["customeridentitycard", "customeridno", "validupto", "cardno", "validfrom"],
             "claimform": ["updateonyourclaimstatus", "detailsofamountclaimed", "allclaimsshallbesettled",
                           "enclosurechecklist", "claimform", "insuranceofthisclaimform", "tobefilledbyinsuredperson",
@@ -3429,13 +3437,13 @@ def classifier(txt: str, c: int, hosp: str,j,randomid):
                                  "progress", "treatment", "initialassessmentrecord", "sourceofhistory", "careplanby",
                                  "intake", "nursingassessmentform", "reasonforadmission"],
             "receipt": ["receipt", "reciept", "reg.charges", "receiptno", "advancereceived", "investigation",
-                        "thesumofrupees",
-                        "onaccountofconsultation", "receivedwiththanks", "particulars","voucherno"],
+                        "thesumofrupees", "recievedwiththanksrs", "referredbydr.", "recievedwiththanksfrommr",
+                        "towardsoperation",
+                        "onaccountofconsultation", "receivedwiththanks", "particulars", "towardsmyconsultationfeesrs"],
             "consultationpapers": ["fcough", "sartos", "rugrl", "murovel"],
             "driverslicence": ["drivinglicence", "dateofissue", "form7rule", "mcwg"],
             "queryreply": ["claimno", "weshallproceed"],
-            "prescription": ["capsule", "oral", "dose", "prescription", "duration",
-                             "medicineorders", "drugsensitivity"],
+
             "essentialitycertificate": ["essentialitycertificate", "prescribedbyme"],
             "riskassumption": ["riskassumptionletter", "loantenure", "groupsafeguardinsurance", "insuredeventalongwith",
                                "premiumdetails", "stampduty", "taxcertificate"]
@@ -3452,11 +3460,11 @@ def classifier(txt: str, c: int, hosp: str,j,randomid):
             "dischargesheet": ["billsummary", "cashlessauthorization", "claimform", "declarationbythepatient",
                                "teslamri", "advancereceived", "admissioncard", "deposit", "haemogramreport",
                                "staffisqualified", "employeeno", "empcode", "detailedbill", "policynumber",
-                               "registrationcharges","ipfinalbill", "finalbill","conditionsofreporting"],
+                               "registrationcharges", "ipfinalbill", "finalbill", "indoorno", "lab.ref.no"],
             "billsummary": ["dischargesummary", "price", "qty", "quantity", "detailrunningbill",
-                            "essentialitycertificate","ipfinalbill"],
+                            "essentialitycertificate","ipfinalbill","itemname",],
             "billdetails": ["dischargesummary", "mandatorypasthistory", "billsummary", "tobefilled", "hospitalpolicy",
-                            "denguens1antigentest",
+                            "denguens1antigentest","indoorno",
                             "testdone","terms&conditions","conditionsofreporting"],
             "admissionnote": [],
             "pan": ["discharge", "hrctchest", "radiology", "findings", "clinical", "billsummary", "youraadhaarno.",
@@ -3474,7 +3482,7 @@ def classifier(txt: str, c: int, hosp: str,j,randomid):
                           "total:", "empcode", "government","terms&conditions","conditionsofreporting"],
             "cashless": ["claimnumber", "relation", "admissionofliability", "declarationbythehospital"],
             "authorizationletter": ["requestforcashless"],
-            "prescription": ["nothing", "attendingpractitioner", "claimform"],
+            "prescription": ["nothing", "attendingpractitioner","nothing", "attendingpractitioner", "claimform", "spo"],
             "policyidcard": [],
             "claimform": ["conditionsofreporting"],
             "indoorcasepapers": ["certificate"],
@@ -3482,7 +3490,7 @@ def classifier(txt: str, c: int, hosp: str,j,randomid):
             "consultationpapers": [],
             "driverslicence": [],
             "queryreply": [],
-            "prescription": ["nothing", "attendingpractitioner", "claimform", "spo"],
+
             "essentialitycertificate": [],
             "riskassumption": []
 
