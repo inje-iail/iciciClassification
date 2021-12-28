@@ -1332,7 +1332,7 @@ def classifier(txt: str, c: int, hosp: str,j,randomid):
                                  'respiratoryrate',
                                  'incaseofemergency', 'reportimmediatelyinemergency', 'adviceondischarge',
                                  'complaintsof',
-                                 'discolourationofextremities'],
+                                 'discolourationofextremities',"impression","observations"],
             "cashless": ["cashless", "authorization", "tobefilled", "nameofthetratingdoctor", "declaration",
                          "qualification", "expectedcostofinvestigation", "costofimplants",
                          "expectedcostofhospitalization",
@@ -1344,7 +1344,7 @@ def classifier(txt: str, c: int, hosp: str,j,randomid):
                           "governmentofindia",
                           "uidai", "uldal"],
             "policyidcard": ["customeridentitycard", "customeridno"],
-            "labreport": ["medicalreport","laboratory","antibiotic","normalrange","specimentype"],
+            "labreport": ["medicalreport","laboratory","antibiotic","normalrange","specimentype","reportrange"],
         }
         absent = {
 
@@ -3387,7 +3387,7 @@ def classifier(txt: str, c: int, hosp: str,j,randomid):
                                "dischargemedication", "dischargerecommendation", "treatmentadvice", "followup",
                                "dateofadmission", "operationnote", "treatmentgiven", "semiliquid",
                                "dischargecard", "dischargeticket", "doa", "specialinvestigation", "treatmentgiven",
-                               "treatmentadvised", "capidreview", "investigations", "blood", "treatmentised", "dod"],
+                               "treatmentadvised", "capidreview", "investigations", "blood", "treatmentised", "dod", "pasthistory"],
             "billsummary": ["billsummary", "dischargebill", "qty", "amount", "totalamount",
                             "qty", "item", "netamount"],
             "billdetails": ["billofsupplyinpatientbill", "netbillamount", "payeramount", "paymentmode" "summary",
@@ -3482,7 +3482,7 @@ def classifier(txt: str, c: int, hosp: str,j,randomid):
                           "total:", "empcode", "government","terms&conditions","conditionsofreporting"],
             "cashless": ["claimnumber", "relation", "admissionofliability", "declarationbythehospital"],
             "authorizationletter": ["requestforcashless"],
-            "prescription": ["nothing", "attendingpractitioner","nothing", "attendingpractitioner", "claimform", "spo"],
+            "prescription": ["nothing", "attendingpractitioner","nothing", "attendingpractitioner", "claimform", "spo","riskassumption","hospitaldetails"],
             "policyidcard": [],
             "claimform": ["conditionsofreporting"],
             "indoorcasepapers": ["certificate"],

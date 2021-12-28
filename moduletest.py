@@ -306,7 +306,7 @@ def seggregator(path, random_id):
     # with open("all_bill.json", 'w') as output:
     #     output.write(str(ress))
 
-    return hospital_, documents, json_datas
+    return ress, documents, json_datas
 
 
 path_to_watch = os.path.join("./listen")
@@ -377,7 +377,7 @@ def classify(path_to_watch):
                     converting_to_image(eachfilepath, save_path, folder)
                     print("7--->")
 
-                seggregator(save_path, random_id)
+                result, documents, json_datas = seggregator(save_path, random_id)
                 token = 0
             # if removed:
             #     print("Removed: ", ", ".join(removed))
@@ -386,11 +386,12 @@ def classify(path_to_watch):
 
         print('2except')
         save_path = path_to_watch
-        seggregator(save_path, random_id)
+        result, documents, json_datas = seggregator(save_path, random_id)
         originalfilepath = os.path.join(path_to_watch, os.listdir(path_to_watch)[0])
         BASE_IMGS_FOLDER = r"imgsfolders"
         targetfilepath = os.path.join(folder, os.listdir(path_to_watch)[0])
         shutil.copyfile(originalfilepath, targetfilepath)
+    return documents, result
 
 # remove : for result
 # classify(path_to_watch)
