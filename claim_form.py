@@ -164,7 +164,7 @@ def claim_form_extract(jsonpath):
             "Place", "Place:"
         ],
         "Place": [
-            "",
+            "Date","Signature"
         ],
         "Date": [
             "",
@@ -425,5 +425,5 @@ def claim_form_extract(jsonpath):
     return result
 
 
-claim_form_extract(r"F:\iAssist_Projects\iciciClassification\imgsfolders\d306b672-8bf4-4343-bfda-255c2ae97d41\jsonslist.json")
+# claim_form_extract(r"F:\iAssist_Projects\iciciClassification\imgsfolders\d306b672-8bf4-4343-bfda-255c2ae97d41\jsonslist.json")
 

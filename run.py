@@ -8,6 +8,7 @@ from aadhar_int import icr_aadhaar, icr_aadhaar_back
 from dischargeSum import dis_sum
 from claim_form import claim_form_extract
 from policy_id import policy_card
+from Cheque import run
 
 result_path = "imgsfolders"
 listen_path = r"listen"
@@ -38,6 +39,10 @@ while True:
             print("cls outer----->", result['documents'][cls])
             txt_json = next(v for i, v in enumerate(data.values()) if i == int(cls)-1)
             # print("value ----->",txt_json)
+            if result['documents'][cls] == "cancelledcheque":
+                res_cheque = run(txt_json)
+                print(res_cheque)
+                final["cancelledcheque"] = res_cheque
             if result['documents'][cls] == "pan":
                 res_pan = icr_pan(txt_json)
                 print(res_pan)
@@ -131,7 +136,7 @@ while True:
 
             "Name as per ID": {"pan": "full_name", "aadhar": "name"},
             "DOB":{"aadhar": "dob", "pan": "dob"},
-            "Address as per ID": {"aadhar": "address line 1"},
+            "Address as per ID": {"aadhar": "full_address"},
             "PAN number": {"pan": "pan_number"},
             "Adhaar number": {"aadhar": "aadhar number"},
         }
@@ -149,7 +154,7 @@ while True:
                                     summary[fld] = final[doc2check][fb][temp_summary[fld][doc2check]]
                                     break
                         else:
-                            print("!>>>",temp_summary[fld][doc2check])
+                            print("!>>>",doc2check,temp_summary[fld][doc2check])
                             if temp_summary[fld][doc2check] in list(final[doc2check].keys()) and final[doc2check][temp_summary[fld][doc2check]] != "":
                                 summary[fld] = final[doc2check][temp_summary[fld][doc2check]]
                                 break
@@ -160,6 +165,13 @@ while True:
         with open("summary.json", "w") as outfile:
             json.dump(summary, outfile)
         print(">>>>>>>>>")
+
+        # generationg json for all result
+        for filename in os.listdir("imageFolderJson"):
+            os.remove(os.path.join("imageFolderJson", filename))
+        for jsonres in final:
+            with open("imageFolderJson/" +str(jsonres)+".json", "w") as outfile:
+                json.dump(final[jsonres], outfile)
 
 
 

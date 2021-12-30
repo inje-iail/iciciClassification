@@ -1,12 +1,1 @@
-{
-  "claimform": {
-    "Place": "NN.SADIK J J _J J J J. J Date: 212/412 // 2 0 2 0"
-  },
-  "discharge_summary": {},
-  "pan": {
-    "full_name": "YADAV SARITA OMKAR",
-    "father_name": "GIRIJESH RAMSAMUJH YADAV",
-    "dob": "30/05/1987",
-    "pan_number": "AGYPY8250A"
-  }
-}
+{"aadhar": {"front": {"aadhar number": "4565 3877 5778", "dob": "", "name": "Suganaben Dineshbhai Chaudhary", "full_address": "JORAPURA (DHAKHA) DHANERA DHANERA BANASKANTHA GUJARAT SUGANABEN DINESHBHAI CHAUDHARY JORAPURA DHAKHA", "address line 1": "SUGANABEN DINESHBHAI CHAUDHARY JORAPURA DHAKHA", "address line 2": "JORAPURA (DHAKHA) DHANERA DHANERA BANASKANTHA GUJARAT", "city": "", "state": "", "pincode": ""}, "back": {"aadhar number": "", "dob": "", "name": "", "full_address": " ", "address line 1": "", "address line 2": "", "city": "", "state": "", "pincode": ""}}, "aadhar2": {"front": {"aadhar number": "4565 3877 5778", "dob": "", "name": "", "full_address": " ", "address line 1": "", "address line 2": "", "city": "", "state": "", "pincode": ""}, "back": {"aadhar number": "", "dob": "", "name": "", "full_address": " Dhakha). Dhanera. Banaskantha, Gujarat.", "address line 1": "Dhakha). Dhanera. Banaskantha, Gujarat.", "address line 2": "", "city": "", "state": "", "pincode": ""}}, "pan": {"full_name": "SURYA KANT KUMAR", "father_name": "BINDESHWAR PRASAD SINGH", "dob": "12/10/1987", "pan_number": "DKEPK9691C"}}
