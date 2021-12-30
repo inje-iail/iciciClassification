@@ -318,7 +318,7 @@ Headings = {
              'ULTRASOUND ABDOMEN DONE ON ', 'CT BRAIN WITHOUT CONTRAST DONE ON ', 'CT CHEST DONE ON ',
              'INVESTIGATIONS', 'DISCHARGE ADVICE', 'Impression', 'Name', 'Reg.No', 'Mobile No', 'Signature',
              'DOCTORS WHO ATTENDED ON THE PATIENT',
-             'Final Diagnosis',
+             'Final Diagnosis', "Procedure Done", "Present Medical History & Examination Findings",
              'HOLTER MONITORING DONE ON ', 'ECHOCARDIOGRAPHY DONE ON ',
              'IP No', 'PAST MEDICAL HISTORY', 'PAST SURGICAL HISTORY', 'Reg No', 'Registration Number',
              'Condition of the patient on admission', 'House Physician',
@@ -612,7 +612,8 @@ Headings = {
             'Route of Admin', 'HISTORY', 'SURGERY', 'ADVICE', 'GENERAL EXAMINATION AT DISCHARGE',
             'Condition at Discharge', 'GENERAL CONDITION ON ADMISSION', 'Summary of Hospital Course',
             'Current Medication', 'Recommendations at Discharge',
-            'URGENT CARE', 'Surgery Name', 'Surgery Date', 'OPERATIVE FINDINGS', 'PREVIOUS EVALUATION', 'Examination'],
+            'URGENT CARE', 'Surgery Name', 'Surgery Date', 'OPERATIVE FINDINGS', 'PREVIOUS EVALUATION', 'Examination',
+            "Contact No", "Email ID", "History of Present Illness", "FOLLOW UP"],
     # 32 Rank
     # "YASHODA" : ['IP.No','Name','Date of Admission','Date of Procedure','Date of Surgery','Date of Discharge','Age',
     #              'Address','Type','YH.No','CHIEF CONSULTANT','REFERRAL','CONSULTANTS',
@@ -1250,6 +1251,25 @@ Headings = {
 
                  'CONDITION ON DISCHARGE','FURTHER ADVICE ON DISCHARGE'],
 
+    "ARIES MATERNITY HOSPITAL" : ["IP No", "Age/Sex", "Admission Date & Time","Name", "Discharge Date & Time", "Doctor Name","Relative Name",
+                                  "OBSTETRIC HISTORY", "EDD", "ANTENATAL PERIOD:","ADMISSION DETAILS","CAESAREAN DETAILS","Advice at Discharge",
+                                 "POSTOPERATIVE PERIOD","INVESTIGATIONS","BABY DETAILS"],
+
+    "SPARSH": ["Name","DOA","Age/Sex","DISCHARGE","IP No","DIAGNOSIS","PRESENTING COMPLAINTS","VITALS /SYSTEMICEXAMINATION",
+              "COURSE IN HOSPITAL","ADVICE ON DISCHARGE","FOLLOW UP AFTER 2 WEEKS"],  ##  "ECG","ECHO","HB,TC,DC","RBS/S CR/SNA/SK",
+
+    "SAILAJA MULTISPECIALITY HOSPITALS": ["Name", "Reg", "Age/Gender", "Address", "Pin No", "Ph", "D.O.A", "D.O.S", "D.O.D", "Consultant Doctor Name",
+                                          "Diagnosis", "Complaints", "Past History", "On Examination", "Course in the Hospital Stay",
+                                          "Discharge Advice"],
+
+    "priya nursing home" : ["IP No", "NAME", "AGE", "SEX", "CONSULTANT", "D.O.A", "D.O.D", "REFERRAL CONSULTANT", "DIAGNOSIS",
+                            "COMPLAINTS OF", "ON EXAMINATION", "INVESTIGATIONS ATTACHED", "TREATMENT GIVEN", "ADVICE ON DISCHARGE",
+                            "Patient FOLLOW UP"],
+
+    "Sai Siddhi" : ["PATIENT'S NAME", "IPID", "AGE", "DATE OF ADMISSION", "GENDER", "DATE OF OPERATION", "ROOM/BED NO", "DATE OF DISCHARGE",
+                    "PATIENT'S ADDRESS", "PATIENT'S CONTACT NUMBER", "CONSULTANT", "DIAGNOSIS", "CHIEF COMPLAINTS", "HISTORY OF PRESENT ILLNESS",
+                    "PAST HISTORY", "CLINICAL EXAMINATION ON ADMISSION", "PROCEDURE DONE", "OPERATIVE FINDINGS", "COURSE IN HOSPITAL", "MEDICATIONS GIVEN",
+                    "CONDITION AT DISCHARGE", "MEDICATION ON DISCHARGE", "FOLLOW UP ADVICE", "WHEN TO OBTAIN URGENT CARE"]
     #
     # 'AMALA INSTITUTE' : ['Name','Age/Gender','MRD','DOA','DIAGNOSIS','PRESENTING COMPLAINTS','ON EXAMINATION',
     #
@@ -1310,7 +1330,7 @@ Exception_Headings = {"BLK": ["Printed By"],  ####   "DIETARY ADVICE",   "Patien
                       "Sri Ramachandra": "",
                       ##['General physcial examination','Systemic Examination','Menstrual history','Marital History'],
                       "Jupiter": "",  # ['Operative time '],
-                      "AIG": '',
+                      "AIG": ["Remarks","Education", "Designation"],
                       "ARTEMIS": '',
                       "MIOT": ["DESIGNATION"],  ###  'Allergies'
                       "Ruby Hall Clinic": ['Contact Urgently If'],
@@ -1379,7 +1399,12 @@ Exception_Headings = {"BLK": ["Printed By"],  ####   "DIETARY ADVICE",   "Patien
                       "LAKESHORE HOSPITAL": "",
                       "AMALA": "",
                       "Satguru": "",
-                      "Bhagwan": ""
+                      "Bhagwan": "",
+                      "ARIES MATERNITY HOSPITAL": "",
+                      "SPARSH":"",
+                      "SAILAJA MULTISPECIALITY HOSPITALS" : "",
+                      "priya nursing home" : "",
+                      "Sai Siddhi" : ""
                       }
 
 Ending_page_text = {"BLK": ["Printed By", "Print Date & Time", "BLK Super Speciality Hospital Bust", "Accredited by"],
@@ -1440,7 +1465,7 @@ Ending_page_text = {"BLK": ["Printed By", "Print Date & Time", "BLK Super Specia
                             'For appointments or other details call on: 040-42444222', 'MS, MAMS, FRCS'],
                     "ARTEMIS": [
                         'Artemis Hospital(a unit of Artemis Medicare Services Ltd. ) Sector 51, Gurugram-122001, Haryana, India. ph. : +91-124-4511111 | Fax'],
-                    "MIOT": ['Review after','For medical issues and discharge related queries please contact ', 'DR PRITHVI MOHANDAS',
+                    "MIOT": ["MIOT Hospitals Private Limited: 4/112", "Email: chief @miothospitals.com", 'Review after','For medical issues and discharge related queries please contact ', 'DR PRITHVI MOHANDAS',
                              'Hospital Contact Details : Telephone No. 22492288',
                              'MIOT Hospitals Private Limited: 4/112. Mouni Poonamallee Road, Manapakkam, Chennai - 600 089, India. Tel: 491 44 4200 2288'],
                     "Ruby Hall Clinic": '',
@@ -1519,8 +1544,12 @@ Ending_page_text = {"BLK": ["Printed By", "Print Date & Time", "BLK Super Specia
                     "NARAYANA": ["ili): Rocdog", "ZOZOF 2383"],
                     "AMALA": "",
                     "Satguru": ["Page", "Sherpur Chowk"],
-                    "Bhagwan": ""
-
+                    "Bhagwan": "",
+                    "ARIES MATERNITY HOSPITAL" : "",
+                    "SPARSH": "",
+                    "SAILAJA MULTISPECIALITY HOSPITALS" : ["Review after 10 days"],
+                    "priya nursing home" : "",
+                    "Sai Siddhi" : ["saisiddhihospital2019@gmail.com", "www.saisiddhihospital.com"]
                     }
 
 others_exception = ["Printed By", 'AdmitByPersonRelati', 'For appointments or other details call on',
