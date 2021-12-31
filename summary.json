@@ -1,7 +1,16 @@
 {
-  "Name as per ID": "SURYA KANT KUMAR",
-  "DOB": "12/10/1987",
-  "Address as per ID": "JORAPURA (DHAKHA) DHANERA DHANERA BANASKANTHA GUJARAT SUGANABEN DINESHBHAI CHAUDHARY JORAPURA DHAKHA",
-  "PAN number": "DKEPK9691C",
-  "Adhaar number": "4565 3877 5778"
+  "Hospital Name": "ABHIRAM INSTITUTE OF MEDICAL SCIENCES",
+  "Hospital Address": "ATMAKUR , SPSR NELLORE DisT, AP-5241312",
+  "Medical Practitioner Name": "DR. KC. V. SRAVAN KUMAR",
+  "Date of Admission": "83/ 1\\ / 20 20 Time#?SoAM/AM",
+  "Date of discharge": "30 / (1/_202 0 Time4 30 AM/PM",
+  "Name as per ID": "A PRASANTH KUMAR REDDY",
+  "DOB": "25/04/1991",
+  "Address as per ID": " ",
+  "PAN number": "BCZPA8850N",
+  "Adhaar number": "6967 4474 5226",
+  "ID Type": [
+    "pan",
+    "aadhar"
+  ]
 }

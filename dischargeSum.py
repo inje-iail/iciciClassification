@@ -1064,6 +1064,14 @@ def dis_sum(list_of_json):
     with open("Interpretation.json", "w") as outfile:
         json.dump(final, outfile)
     return final
+
+# f = open('all_bill.json', "r")
+#
+# # Reading from file
+# data = json.loads(f.read())
+# print(list(data.values()))
+#
+# dis_sum(list(data.values()))
 # dis_sum(save_path)
 
 # print(result["HISTORY"])

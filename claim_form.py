@@ -36,7 +36,7 @@ def jsonslist(img_dir):
 
     return json_list
 
-# json_list = jsonslist(r"F:\iAssist_Projects\iciciClassification\imgsfolders\d306b672-8bf4-4343-bfda-255c2ae97d41")
+# json_list = jsonslist(r"F:\iAssist_Projects\iciciClassification\imgsfolders\02cbad9d-78e5-41c2-947c-01eccfddba48")
 
 def claim_form_extract(jsonpath):
 
@@ -62,16 +62,16 @@ def claim_form_extract(jsonpath):
             "Issuance of this claim form is not to be taken as an admission of liability"
         ],
         "claim_no": [
-            "Contact", "Description", "Loss/Event"
+            "Contact", "Description", "Loss/Event", "Mobile"
         ],
         "policyholder_name": [
-            "Name of the Insured Person:", "insured", "Name" ,"Bank","number","Policy"
+            "Name of the Insured Person:", "insured", "Name" ,"Bank","number","Policy","Relationship"
         ],
         "patient/Insured_name": [
-            "Card", "UHID","Address","Residential"
+            "Card", "UHID","Address","Residential","Gender"
         ],
         "patient_card/uhid": [
-            "Gender"
+            "Gender","Name","Group"
         ],
         "dob": [
             "Gender","age","Completed"
@@ -80,7 +80,7 @@ def claim_form_extract(jsonpath):
             "Mobile"
         ],
         "patient/Insured_mobile_no": [
-            "Email","Part","Claim"
+            "Email","Part","Claim","E-mail"
         ],
         "patient_email": [
             "Policy"
@@ -89,7 +89,7 @@ def claim_form_extract(jsonpath):
             "Claimant Details","PAN"
         ],
         "relationship_of_claimant_with_insured_person": [
-            "Address"
+            "Address","Policy","policy"
         ],
         "address_for_communication": [
             "Contact Details"
@@ -113,10 +113,10 @@ def claim_form_extract(jsonpath):
             "Mobile"
         ],
         "hospital_mobile": [
-            "ROHINI"
+            "ROHINI","Hospital"
         ],
         "rohini_id": [
-            "Hospital"
+            "Hospital","Type"
         ],
         "treating_medical_practitioner": [
             "Nature",
@@ -140,7 +140,7 @@ def claim_form_extract(jsonpath):
             "Reasons for admission",
         ],
         "claimant/insured_person's_name(as_per_bank_records": [
-            "Claimant",
+            "Claimant","bank","policy","Bank"
         ],
         "claimant/insured_person's_bank_account_no": [
             "bank","Bank","Name"
@@ -149,7 +149,7 @@ def claim_form_extract(jsonpath):
             "Scanned","Branch","name"
         ],
         "branch_name:": [
-            "Address","IFSC","Bank"
+            "Address","IFSC","Bank","bank"
         ],
         "bank_address": [
             "IFSC","FSC code"
@@ -170,7 +170,7 @@ def claim_form_extract(jsonpath):
             "",
         ],
         "kyc_contact_no": [
-            "PAN", "Pan", "KYC"
+            "PAN", "Pan", "KYC","IRDA", "Circular"
         ],
     }
 
@@ -187,16 +187,18 @@ def claim_form_extract(jsonpath):
         ],
         "claim_no": [
             "Claim Number (if allotted) .", "Claim Number (if allotted):", "Claim Number:", "Claim Number (if allotted) :",
-            "Claim No. (If claim has already been registered with ICICI Lombard Health Care):"
+            "Claim No. (If claim has already been registered with ICICI Lombard Health Care):",
+            "C5. Claim Number (it allafter :"
         ],
         "policyholder_name": [
-            "Name of the Policyholder:", "Name of the Policyholder", "Name of the Policy Holder", "Name of the Policy Holder:"
+            "Name of the Policyholder:", "Name of the Policyholder", "Name of the Policy Holder", "Name of the Policy Holder:",
+            "2. Name of the Proposer*:"
         ],
         "patient/Insured_name": [
             "Name of the Patient:","Name of the Patient","Name of Insured:"
         ],
         "patient_card/uhid": [
-            "Card No./ UHID of the Patient:", "Card No./ UHID of the Patient"
+            "Card No./ UHID of the Patient:", "Card No./ UHID of the Patient","Card No./ UHID No."
         ],
         "dob": [
             "Date of birth:","Date of birth","Date of Birth:"
@@ -215,7 +217,8 @@ def claim_form_extract(jsonpath):
             "Aadhar Card No of Insured Person:","Aadhaar No. of Policy Holder:","Aadhaar No. of Policy Holder"
         ],
         "relationship_of_claimant_with_insured_person": [
-            "Relationship of claimant with Insured Person:", "Relationship of claimant with Insured Person"
+            "Relationship of claimant with Insured Person:", "Relationship of claimant with Insured Person",
+            "Relationship with Proposer*:","Relationship with the Proposer*:"
         ],
         "address_for_communication": [
             "Address for communication"
@@ -242,7 +245,7 @@ def claim_form_extract(jsonpath):
             "Mobile no.:"
         ],
         "rohini_id": [
-            "ROHINI ID"
+            "ROHINI ID","ROHINI ID*:"
         ],
         "treating_medical_practitioner": [
             "Name of treating Medical Practitioner:", "Name of treating Medical Practitioner:_"
@@ -267,16 +270,18 @@ def claim_form_extract(jsonpath):
         ],
         "claimant/insured_person's_name(as_per_bank_records": [
             "Claimant /Insured Person's name(as per bank records:", "Claimant /Insured Person's name(as per bank records",
-            "Claimant /Insured Person's name(as per bank records:"
+            "Claimant /Insured Person's name(as per bank records:", "Proposer (policy holder)/ Employee name* (as per bank records):",
+
         ],
         "claimant/insured_person's_bank_account_no": [
-            "Claimant /Insured Person's bank account no.:","Claimant /Insured Person's bank account no :","Bank account number of Policy Holder:"
+            "Claimant /Insured Person's bank account no.:","Claimant /Insured Person's bank account no :","Bank account number of Policy Holder:",
+            "Proposer/ policy holder Bank account no.:"
         ],
         "name_of_the_bank": [
             "Name of the bank:", "Name of the bank", "Name of the bank:", "Name of the Bank","Name of the Bank:"
         ],
         "branch_name:": [
-            "Branch name:", "Branch name :","Branch Name:","Branch Name"
+            "Branch name:", "Branch name :","Branch Name:","Branch Name",". Branch name:"
         ],
         "bank_address": [
             "Address of the bank:"
@@ -309,6 +314,7 @@ def claim_form_extract(jsonpath):
     for json_data in json_list:
         for i in range(len(json_data)):
             print(json_data[i].get("text"))
+            listofunique = ["hospital_address"]
             for ext_fld in present_keys:
                 # print("Extd :", ext_fld)
 
@@ -316,7 +322,37 @@ def claim_form_extract(jsonpath):
                 # n_bb = json_data[i+1].get("boundingBox")
                 # print(c_bb[2] , n_bb[0])
 
-                if visited[ext_fld] == False and json_data[i].get("text") in present_keys[ext_fld]:
+
+                if visited[ext_fld] == False and json_data[i].get("text") in present_keys[ext_fld] and ext_fld in listofunique:
+                    print("iiiiiiii")
+                    if ext_fld == "hospital_address":
+                        ky_new = ""
+                        ky = ext_fld
+                        result[ky] = ""
+                        brk_flag = False
+                        for j in range(i + 1, len(json_data)):
+                            txt2insert = json_data[j].get("text").lower()
+                            for brk in stopkey[ext_fld]:
+                                if brk in json_data[j].get("text"):
+                                    brk_flag = True
+                            if brk_flag:
+                                break
+                            for b in ["city", "state"]:
+                                if b in json_data[j].get("text").lower():
+                                    ky = "hospital_" + b.lower()
+                                    result[ky] = ""
+                                    txt2insert = txt2insert.upper().replace(b.upper(),"").strip(":-. ,")
+                                    j_flag = True
+                                    break
+                            # if j_flag:
+                            #     ky =
+                            print("---'''",ky,json_data[j].get("text"))
+                            result[ky] = result[ky] + " " + txt2insert
+
+
+
+
+                elif visited[ext_fld] == False and json_data[i].get("text") in present_keys[ext_fld]:
 
                     result[ext_fld] = ""
                     b_flag = False
@@ -358,6 +394,8 @@ def claim_form_extract(jsonpath):
 
 
                             # if visited[ext_fld] == False and json_data[i].get("text") in present_keys[ext_fld] and c_bb[2] < n_bb[0]:
+                        result[ext_fld] = ""
+
                 #     result[ext_fld] = json_data[i+1].get("text")
                 #     visited[ext_fld] = True
                 #     break
@@ -381,33 +419,20 @@ def claim_form_extract(jsonpath):
                                     result[ext_fld] = result[ext_fld] + " " + json_data[j].get("text")
                                     visited[ext_fld] = True
 
-                            # if ext_fld == "hospital_address":
-                            #     print("yes hos add----")
-                            #     hos_ilist = {"hospital_city": ["City", "city"],
-                            #                  "hospital_state": ["State"],
-                            #                  "hospital_pincode": ["Pincode"], }
-                            #     temptxt = ""
-                            #     nb_flag = False
-                            #     for j in range(i + 1, len(json_data)):
-                            #         print("yes hos add:", json_data[j].get("text"))
-                            #         for b in stopkey[ext_fld]:
-                            #             if b in json_data[j].get("text"):
-                            #                 nb_flag = True
-                            #                 print("Flag found")
-                            #         if nb_flag or json_data[j].get("text") in present_keys[ext_fld]:
-                            #             print("Flag break")
-                            #             break
-                            #         else:
-                            #             for nw in range(0, len(hos_ilist)):
-                            #                 print("yes hos 1:", list(hos_ilist.values())[nw])
-                            #                 for ni in list(hos_ilist.values())[nw]:
-                            #                     if ni in json_data[j].get("text"):
-                            #                         if ni in hos_ilist["hospital_city"]:
-                            #                             result[ext_fld] = temptxt
-                            #                             temptxt = ""
-                            #                         else:
-                            #                             result[list(hos_ilist.keys())[nw-1]] = temptxt
-                            #                             temptxt = ""
+                            if ext_fld == "hospital_address":
+                                print("yes hospital_address")
+                                print(result[ext_fld])
+                                hos_detail = result[ext_fld]
+                                if "City" in hos_detail:
+                                    result["hospital_address"] = hos_detail.split("City")[0].strip("-: .")
+                                    hos_detail = hos_detail.split("City")[1].strip("-: .")
+                                if "State" in hos_detail:
+                                    result["hospital_city"] = hos_detail.split("State")[0].strip("-: .")
+                                    hos_detail = hos_detail.split("State")[1].strip("-: .")
+                                if "Pincode" in hos_detail:
+                                    result["hospital_state"] = hos_detail.split("Pincode")[0].strip("-: .")
+                                    hos_detail = hos_detail.split("Pincode")[1].strip("-: .")
+                                    result["hospital_pincode"] = hos_detail
 
 
                             break
@@ -425,5 +450,5 @@ def claim_form_extract(jsonpath):
     return result
 
 
-# claim_form_extract(r"F:\iAssist_Projects\iciciClassification\imgsfolders\d306b672-8bf4-4343-bfda-255c2ae97d41\jsonslist.json")
+# claim_form_extract(r"F:\iAssist_Projects\iciciClassification\imgsfolders\02cbad9d-78e5-41c2-947c-01eccfddba48\jsonslist.json")
 

@@ -115,15 +115,16 @@ while True:
         with open("final.json", "w") as outfile:
             json.dump(final, outfile)
 
+
         # summary result
         temp_summary = {
             "Hospital Name": {"claimform": "hospital_name"},
             "ROHINI ID": "",
             "Hospital Contact no": {"claimform": "hospital_mobile"},
             "Hospital Email id": "",
-            "Hospital pincode": "",
-            "Hospital city": "",
-            "Hospital state": "",
+            "Hospital pincode": {"claimform": "hospital_pincode"},
+            "Hospital city": {"claimform": "hospital_city"},
+            "Hospital state": {"claimform": "hospital_state"},
             "Hospital Address": {"claimform": "hospital_address"},
 
             "Medical Practitioner Name": {"claimform": "treating_medical_practitioner"},
@@ -134,14 +135,16 @@ while True:
             "Date of discharge": {"claimform": "discharge_date_time","discharge_summary": "date of discharge"},
             "Length of stay in hospital": "",
 
+            "ID Type": "",
             "Name as per ID": {"pan": "full_name", "aadhar": "name"},
-            "DOB":{"aadhar": "dob", "pan": "dob"},
+            "DOB":{"aadhar": "dob", "pan": "dob", "claimform": "dob"},
             "Address as per ID": {"aadhar": "full_address"},
             "PAN number": {"pan": "pan_number"},
-            "Adhaar number": {"aadhar": "aadhar number"},
+            "Adhaar number": {"aadhar": "aadhar number", "claimform": "claimant_aadhar_no"},
         }
         summary = {}
         for fld in temp_summary:
+            #ex dob
             if temp_summary[fld] != "":
                 for doc2check in temp_summary[fld]:
                     print(fld,"-->",doc2check)
@@ -160,6 +163,14 @@ while True:
                                 break
                     else:
                         break
+
+        if "pan" in list(final.keys()) or "aadhar" in list(final.keys()):
+            summary["ID Type"] = []
+            if "pan" in list(final.keys()):
+                summary["ID Type"].append("pan")
+            if "aadhar" in list(final.keys()):
+                summary["ID Type"].append("aadhar")
+
         print(">>>>>>>>>")
         print("sum", summary)
         with open("summary.json", "w") as outfile:
@@ -172,6 +183,10 @@ while True:
         for jsonres in final:
             with open("imageFolderJson/" +str(jsonres)+".json", "w") as outfile:
                 json.dump(final[jsonres], outfile)
+        with open("imageFolderJson/summary.json", "w") as outfile:
+            json.dump(summary, outfile)
+        with open("imageFolderJson/" + "final.json", "w") as outfile:
+            json.dump(final, outfile)
 
 
 
