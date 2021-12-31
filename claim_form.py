@@ -53,7 +53,11 @@ def claim_form_extract(jsonpath):
     stopkey = {
         "treating_dr_details": [
             "Details of the patient",
-            "admitted"
+            "admitted","Details of the patient",
+            "admitted",
+            "Nature of Injury/Illness:",
+            "Nature of Injury/illness;",
+            "Nature of injury/Illness:"
         ],
         "policy_no": [
             "Name of the Policyholder:", "Name","Card No","UHID"
@@ -155,7 +159,7 @@ def claim_form_extract(jsonpath):
             "IFSC","FSC code"
         ],
         "IFSC_code": [
-            "PAN","Pan","Policy"
+            "PAN","Pan","Policy","Nominee"
         ],
         "Name of the Insured Person/claimant/Nominee": [
             "Relation",
@@ -177,7 +181,8 @@ def claim_form_extract(jsonpath):
     present_keys = {
         "treating_dr_details":[
             "82. Details of the attending Medical Practitioner/ Doctor/ Treating Physician or Surgeon",
-            "B2. Details of the attending Medical Practitioner/ Doctor/ Treating Physician or Surgeon"
+            "B2. Details of the attending Medical Practitioner/ Doctor/ Treating Physician or Surgeon",
+            "Name of treating Medical Practitioner:",
         ],
         "policy_no": [
             "Current Policy No.:", "Policy No.:", "Policy No", "Policy No :"
