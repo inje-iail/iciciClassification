@@ -67,14 +67,14 @@ while True:
                     }
                     print(res_aadhar)
                     final["aadhar"] = res_aadhar
-            elif discharge_visit == False and result['documents'][cls] == "dischargesheet":
+            elif discharge_visit == False and result['documents'][cls] == "dischargesheet" or result['documents'][cls] == "dischargesummary":
                 print("cls ----->", cls)
                 print("len of json1:", len(txt_json))
                 list_of_json = [txt_json]
                 discharge_visit = True
                 for q in range(int(cls),len(result['documents'])):
                     print("q ----->", q)
-                    if result['documents'][str(q)] == "dischargesheet":
+                    if result['documents'][str(q)] == "dischargesheet" or result['documents'][str(q)] == "dischargesummary":
                         txt_json = next(v for i, v in enumerate(data.values()) if i == int(q))
                         list_of_json.append(txt_json)
                         print("len of json:", len(txt_json))
@@ -131,8 +131,8 @@ while True:
             "Doctor Contact no": {"claimform": "treating_medical_practitioner_Mobile_no"},
             "Clinical Specialization": "",
 
-            "Date of Admission": {"claimform": "admission_date_time","discharge_summary": "date of admission"},
-            "Date of discharge": {"claimform": "discharge_date_time","discharge_summary": "date of discharge"},
+            "Date of Admission": {"claimform": "admission_date_time", "discharge_summary": "date of admission"},
+            "Date of discharge": {"claimform": "discharge_date_time", "discharge_summary": "date of discharge"},
             "Length of stay in hospital": "",
 
             "ID Type": "",
@@ -161,8 +161,8 @@ while True:
                             if temp_summary[fld][doc2check] in list(final[doc2check].keys()) and final[doc2check][temp_summary[fld][doc2check]] != "":
                                 summary[fld] = final[doc2check][temp_summary[fld][doc2check]]
                                 break
-                    else:
-                        break
+                    # else:
+                    #     break
 
         if "pan" in list(final.keys()) or "aadhar" in list(final.keys()):
             summary["ID Type"] = []
