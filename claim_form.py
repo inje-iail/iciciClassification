@@ -36,7 +36,7 @@ def jsonslist(img_dir):
 
     return json_list
 
-# json_list = jsonslist(r"F:\iAssist_Projects\iciciClassification\imgsfolders\02cbad9d-78e5-41c2-947c-01eccfddba48")
+# json_list = jsonslist(r"F:\iAssist_Projects\iciciClassification\listen")
 
 def claim_form_extract(jsonpath):
 
@@ -108,7 +108,7 @@ def claim_form_extract(jsonpath):
             "insurance",
         ],
         "hospital_name": [
-            "Address",
+            "Address","Room"
         ],
         "hospital_address": [
             "treating Medical","Telephone"
@@ -185,7 +185,7 @@ def claim_form_extract(jsonpath):
             "Name of treating Medical Practitioner:",
         ],
         "policy_no": [
-            "Current Policy No.:", "Policy No.:", "Policy No", "Policy No :"
+            "Current Policy No.:", "Policy No.:", "Policy No", "Policy No :", "C2. Policy Number"
         ],
         "uin_no": [
             "UIN No.", "UIN No"
@@ -238,7 +238,8 @@ def claim_form_extract(jsonpath):
             "Aadhaar Card No. of claimant:", "Aadhaar Card No. of claimant",
         ],
         "hospital_name": [
-            "Name of the Hospital/ Nursing home:", "Name of the Hospital:", "Name of the Hospital"
+            "Name of the Hospital/ Nursing home:", "Name of the Hospital:", "Name of the Hospital",
+            "Name of hospital where admitted"
         ],
         "hospital_address": [
             "Address of the Hospital","Address:"
@@ -276,11 +277,11 @@ def claim_form_extract(jsonpath):
         "claimant/insured_person's_name(as_per_bank_records": [
             "Claimant /Insured Person's name(as per bank records:", "Claimant /Insured Person's name(as per bank records",
             "Claimant /Insured Person's name(as per bank records:", "Proposer (policy holder)/ Employee name* (as per bank records):",
-
+            ". Proposer (policy holder)/ Employee name* (as per bank records):"
         ],
         "claimant/insured_person's_bank_account_no": [
             "Claimant /Insured Person's bank account no.:","Claimant /Insured Person's bank account no :","Bank account number of Policy Holder:",
-            "Proposer/ policy holder Bank account no.:"
+            "Proposer/ policy holder Bank account no.:", ". Proposer/ policy holder Bank account no.:"
         ],
         "name_of_the_bank": [
             "Name of the bank:", "Name of the bank", "Name of the bank:", "Name of the Bank","Name of the Bank:"
@@ -289,11 +290,11 @@ def claim_form_extract(jsonpath):
             "Branch name:", "Branch name :","Branch Name:","Branch Name",". Branch name:"
         ],
         "bank_address": [
-            "Address of the bank:"
+            "Address of the bank:",". Address of the bank:"
         ],
         "IFSC_code": [
             "IFSC code no. of the bank:", "FSC code no. of the bank:", "IFSC code no, of the bank:",
-            "IFSC of the Bank:"
+            "IFSC of the Bank:", ". IFSC code no. of the bank:"
         ],
         "Name of the Insured Person/claimant/Nominee": [
             "Name of the Insured Person/claimant/Nominee:", "Name of the Insured Person/claimant/Nominee:"
@@ -455,5 +456,5 @@ def claim_form_extract(jsonpath):
     return result
 
 
-# claim_form_extract(r"F:\iAssist_Projects\iciciClassification\imgsfolders\02cbad9d-78e5-41c2-947c-01eccfddba48\jsonslist.json")
+# claim_form_extract(r"F:\iAssist_Projects\iciciClassification\listen\jsonslist.json")
 

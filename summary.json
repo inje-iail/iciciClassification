@@ -1,1 +1,16 @@
-{}
+{
+  "Hospital Name": "SHUSHILABEN HOSPITAL & MATERNITY HOME ",
+  "Hospital Address": "2ND FLOOR , SAHAJANAND ARCADE, SARASPUR",
+  "Medical Practitioner Name": "DR. VINOD GUPTA ",
+  "Date of Admission": "20 /10 / 2020 Time: 10:AM/PM",
+  "Date of discharge": "25 /10/ 2020 Time::0AM/PM",
+  "Name as per ID": "SURYA KANT KUMAR",
+  "DOB": "12/10/1987",
+  "Address as per ID": " ",
+  "PAN number": "DKEPK9691C",
+  "Adhaar number": "4359 2838 8622",
+  "ID Type": [
+    "pan",
+    "aadhar"
+  ]
+}

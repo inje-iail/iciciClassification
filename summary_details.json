@@ -1,0 +1,103 @@
+{
+  "Hospital Name": [
+    {
+      "claimform": "SHUSHILABEN HOSPITAL & MATERNITY HOME "
+    },
+    {
+      "Selected": "claimform"
+    }
+  ],
+  "Hospital Contact no": [],
+  "Hospital pincode": [],
+  "Hospital city": [],
+  "Hospital state": [],
+  "Hospital Address": [
+    {
+      "claimform": "2ND FLOOR , SAHAJANAND ARCADE, SARASPUR"
+    },
+    {
+      "Selected": "claimform"
+    }
+  ],
+  "Medical Practitioner Name": [
+    {
+      "claimform": "DR. VINOD GUPTA "
+    },
+    {
+      "Selected": "claimform"
+    }
+  ],
+  "Doctor Contact no": [],
+  "Clinical Specialization": [],
+  "Date of Admission": [
+    {
+      "claimform": "20 /10 / 2020 Time: 10:AM/PM"
+    },
+    {
+      "Selected": "claimform"
+    }
+  ],
+  "Date of discharge": [
+    {
+      "claimform": "25 /10/ 2020 Time::0AM/PM"
+    },
+    {
+      "Selected": "claimform"
+    }
+  ],
+  "Name as per ID": [
+    {
+      "pan": "SURYA KANT KUMAR"
+    },
+    {
+      "aadhar": "Surya Kant Kumar"
+    },
+    {
+      "Selected": "pan"
+    }
+  ],
+  "DOB": [
+    {
+      "aadhar": "12/10/1987"
+    },
+    {
+      "pan": "12/10/1987"
+    },
+    {
+      "claimform": "3/10/1987"
+    },
+    {
+      "Selected": "aadhar"
+    }
+  ],
+  "Address as per ID": [
+    {
+      "aadhar": " "
+    },
+    {
+      "aadhar": " "
+    },
+    {
+      "Selected": "aadhar"
+    }
+  ],
+  "PAN number": [
+    {
+      "pan": "DKEPK9691C"
+    },
+    {
+      "Selected": "pan"
+    }
+  ],
+  "Adhaar number": [
+    {
+      "aadhar": "4359 2838 8622"
+    },
+    {
+      "claimform": "4359 2838 862 2"
+    },
+    {
+      "Selected": "aadhar"
+    }
+  ]
+}

@@ -5,7 +5,8 @@ import time
 from moduletest import classify
 from pan_int import icr_pan
 from aadhar_int import icr_aadhaar, icr_aadhaar_back
-from dischargeSum import dis_sum
+# from dischargeSum import dis_sum
+from Discharge_summary_seshu import run_dis_sum
 from claim_form import claim_form_extract
 from policy_id import policy_card
 from Cheque import run
@@ -79,7 +80,7 @@ while True:
                         list_of_json.append(txt_json)
                         print("len of json:", len(txt_json))
 
-                res_dis_sum = dis_sum(list_of_json)
+                res_dis_sum = run_dis_sum(list_of_json)
                 print("len list_of_json:",len(list_of_json))
 
                 final["discharge_summary"] = res_dis_sum
@@ -116,9 +117,10 @@ while True:
             json.dump(final, outfile)
 
 
-        # summary result
+        #  summary result >>>>>>>>>>>>>>>>>>>>>>>>>>
+
         temp_summary = {
-            "Hospital Name": {"claimform": "hospital_name"},
+            "Hospital Name": {"claimform": "hospital_name", "discharge_summary": "hospital name"},
             "ROHINI ID": "",
             "Hospital Contact no": {"claimform": "hospital_mobile"},
             "Hospital Email id": "",
@@ -127,12 +129,12 @@ while True:
             "Hospital state": {"claimform": "hospital_state"},
             "Hospital Address": {"claimform": "hospital_address"},
 
-            "Medical Practitioner Name": {"claimform": "treating_medical_practitioner"},
+            "Medical Practitioner Name": {"claimform": "treating_medical_practitioner","discharge_summary": "consultant"},
             "Doctor Contact no": {"claimform": "treating_medical_practitioner_Mobile_no"},
-            "Clinical Specialization": "",
+            "Clinical Specialization": {"discharge_summary": "Department Specialty"},
 
-            "Date of Admission": {"claimform": "admission_date_time", "discharge_summary": "date of admission"},
-            "Date of discharge": {"claimform": "discharge_date_time", "discharge_summary": "date of discharge"},
+            "Date of Admission": {"discharge_summary": "date of admission", "claimform": "admission_date_time"},
+            "Date of discharge": {"discharge_summary": "date of discharge", "claimform": "discharge_date_time"},
             "Length of stay in hospital": "",
 
             "ID Type": "",
@@ -143,6 +145,8 @@ while True:
             "Adhaar number": {"aadhar": "aadhar number", "claimform": "claimant_aadhar_no"},
         }
         summary = {}
+        summary_detail = {}
+        temp_summary_detail = {}
         for fld in temp_summary:
             #ex dob
             if temp_summary[fld] != "":
@@ -154,15 +158,44 @@ while True:
                             for fb in final[doc2check]:
                                 print(">>>",fb,temp_summary[fld][doc2check])
                                 if final[doc2check][fb][temp_summary[fld][doc2check]] != "":
+                                    temp_summary_detail[str(fld)] = doc2check
                                     summary[fld] = final[doc2check][fb][temp_summary[fld][doc2check]]
                                     break
                         else:
                             print("!>>>",doc2check,temp_summary[fld][doc2check])
                             if temp_summary[fld][doc2check] in list(final[doc2check].keys()) and final[doc2check][temp_summary[fld][doc2check]] != "":
+                                temp_summary_detail[str(fld)] = doc2check
                                 summary[fld] = final[doc2check][temp_summary[fld][doc2check]]
                                 break
                     # else:
                     #     break
+
+        # For Detailed Summary >>>>>>>>>>>>>>>>>>>>
+        for fld in temp_summary:
+            if temp_summary[fld] != "":
+                summary_detail[fld] = []
+                for doc2check in temp_summary[fld]:
+                    print(fld,"11-->",doc2check)
+                    if doc2check in final:
+                        print("11___________>>>",doc2check)
+                        if doc2check == "aadhar":
+                            for fb in final[doc2check]:
+                                print("11>>>",fb,temp_summary[fld][doc2check])
+                                if temp_summary[fld][doc2check] in list(final[doc2check][fb].keys()) and final[doc2check][fb][temp_summary[fld][doc2check]] != "":
+                                    summary_detail[fld].append({doc2check: final[doc2check][fb][temp_summary[fld][doc2check]]})
+
+                        else:
+                            print("!>>>",doc2check,temp_summary[fld][doc2check])
+                            if temp_summary[fld][doc2check] in list(final[doc2check].keys()) and final[doc2check][temp_summary[fld][doc2check]] != "":
+                                summary_detail[fld].append({doc2check: final[doc2check][temp_summary[fld][doc2check]]})
+                                print("oo ", final[doc2check][temp_summary[fld][doc2check]])
+
+        for fld in summary_detail:
+            if summary_detail[fld] != []:
+                summary_detail[fld].append({"Selected": temp_summary_detail[fld]})
+
+
+
 
         if "pan" in list(final.keys()) or "aadhar" in list(final.keys()):
             summary["ID Type"] = []
@@ -175,7 +208,10 @@ while True:
         print("sum", summary)
         with open("summary.json", "w") as outfile:
             json.dump(summary, outfile)
+        with open("imageFolderJson/summary_details.json", "w") as outfile:
+            json.dump(summary_detail, outfile)
         print(">>>>>>>>>")
+        print("sum", summary_detail)
 
         # generationg json for all result
         for filename in os.listdir("imageFolderJson"):

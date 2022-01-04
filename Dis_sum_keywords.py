@@ -605,7 +605,7 @@ Headings = {
                'General Examination', 'CONDITION AT DISCHARGE', 'Other Reports', 'Follow-Up Instructions',
                'Next Appointment'],#'RADIOLOGY',
 
-    "AIG": ['UHID', 'IP No', 'Name', 'Date of Admission', 'Age /Sex', 'Date of Discharge', 'Ward / Bed', 'Type',
+    "AIG": ["AIG",'UHID', 'IP No', 'Name', 'Date of Admission', 'Age /Sex', 'Date of Discharge', 'Ward / Bed', 'Type',
             'Address', 'Remarks', 'Diagnosis Type', 'Primary Consultant', 'Diagnosis', 'Clinical Findings',
             'Past Medical history', 'Surgical history', 'ON EXAMINATION', 'GENERAL EXAMINATION', 'SYSTEMIC EXAMINATION',
             'Condition at the time of admission', 'Summary Of Investigation', 'OT', 'Operative findings',
@@ -1251,14 +1251,14 @@ Headings = {
 
                  'CONDITION ON DISCHARGE','FURTHER ADVICE ON DISCHARGE'],
 
-    "ARIES MATERNITY HOSPITAL" : ["IP No", "Age/Sex", "Admission Date & Time","Name", "Discharge Date & Time", "Doctor Name","Relative Name",
+    "ARIES MATERNITY HOSPITAL" : ["ARIES MATERNITY HOSPITAL","IP No", "Age/Sex", "Admission Date & Time","Name", "Discharge Date & Time", "Doctor Name","Relative Name",
                                   "OBSTETRIC HISTORY", "EDD", "ANTENATAL PERIOD:","ADMISSION DETAILS","CAESAREAN DETAILS","Advice at Discharge",
                                  "POSTOPERATIVE PERIOD","INVESTIGATIONS","BABY DETAILS"],
 
-    "SPARSH": ["Name","DOA","Age/Sex","DISCHARGE","IP No","DIAGNOSIS","PRESENTING COMPLAINTS","VITALS /SYSTEMICEXAMINATION",
+    "SPARSH": ["SPARSH", "Name","DOA","Age/Sex","DISCHARGE","IP No","DIAGNOSIS","PRESENTING COMPLAINTS","VITALS /SYSTEMICEXAMINATION",
               "COURSE IN HOSPITAL","ADVICE ON DISCHARGE","FOLLOW UP AFTER 2 WEEKS"],  ##  "ECG","ECHO","HB,TC,DC","RBS/S CR/SNA/SK",
 
-    "SAILAJA MULTISPECIALITY HOSPITALS": ["Name", "Reg", "Age/Gender", "Address", "Pin No", "Ph", "D.O.A", "D.O.S", "D.O.D", "Consultant Doctor Name",
+    "SAILAJA MULTISPECIALITY HOSPITALS": ["SAILAJA MULTISPECIALITY HOSPITALS", "Name", "Reg", "Age/Gender", "Address", "Pin No", "Ph", "D.O.A", "D.O.S", "D.O.D", "Consultant Doctor Name",
                                           "Diagnosis", "Complaints", "Past History", "On Examination", "Course in the Hospital Stay",
                                           "Discharge Advice"],
 
@@ -1269,7 +1269,13 @@ Headings = {
     "Sai Siddhi" : ["PATIENT'S NAME", "IPID", "AGE", "DATE OF ADMISSION", "GENDER", "DATE OF OPERATION", "ROOM/BED NO", "DATE OF DISCHARGE",
                     "PATIENT'S ADDRESS", "PATIENT'S CONTACT NUMBER", "CONSULTANT", "DIAGNOSIS", "CHIEF COMPLAINTS", "HISTORY OF PRESENT ILLNESS",
                     "PAST HISTORY", "CLINICAL EXAMINATION ON ADMISSION", "PROCEDURE DONE", "OPERATIVE FINDINGS", "COURSE IN HOSPITAL", "MEDICATIONS GIVEN",
-                    "CONDITION AT DISCHARGE", "MEDICATION ON DISCHARGE", "FOLLOW UP ADVICE", "WHEN TO OBTAIN URGENT CARE"]
+                    "CONDITION AT DISCHARGE", "MEDICATION ON DISCHARGE", "FOLLOW UP ADVICE", "WHEN TO OBTAIN URGENT CARE"],
+    "AIMS" : ["AIMS", "a.Patient's Name*", ". Telephone No / Mobile No*", "C. IPD No", "Admission No", "e. Treating Consultant/s' Name", "Contact Numbers", "b. Department/Specialty",
+          "f. Date of Admission with Time", "Date of Discharge with Time", "h. MLC No*", "FIR NO", "Provisional Diagnosis",
+          "Final Diagnosis at the", "ICD-10 code(s) for Final Diagnosis", "Presenting Complaints with", "m. Summary of Presenting Illness", "n. Key findings, on physical",
+          ". History of alcoholism, tobacco or", "Significant Past Medical and", "Family History if significant/", "Summary of key investigations",
+          "Course in the Hospital including", "Advice on Discharge", "Treating Consultant/", "Patient/ Attendant *"],
+
     #
     # 'AMALA INSTITUTE' : ['Name','Age/Gender','MRD','DOA','DIAGNOSIS','PRESENTING COMPLAINTS','ON EXAMINATION',
     #
@@ -1332,7 +1338,7 @@ Exception_Headings = {"BLK": ["Printed By"],  ####   "DIETARY ADVICE",   "Patien
                       "Jupiter": "",  # ['Operative time '],
                       "AIG": ["Remarks","Education", "Designation"],
                       "ARTEMIS": '',
-                      "MIOT": ["DESIGNATION"],  ###  'Allergies'
+                      "MIOT": ["Name","Registration Number","DESIGNATION"],  ###  'Allergies'
                       "Ruby Hall Clinic": ['Contact Urgently If'],
                       "KIMS": "",
                       "Dr L H Hiranandani": "",
@@ -1404,7 +1410,8 @@ Exception_Headings = {"BLK": ["Printed By"],  ####   "DIETARY ADVICE",   "Patien
                       "SPARSH":"",
                       "SAILAJA MULTISPECIALITY HOSPITALS" : "",
                       "priya nursing home" : "",
-                      "Sai Siddhi" : ""
+                      "Sai Siddhi" : "",
+                      "AIMS": ["Name","during Hospitalization*"],
                       }
 
 Ending_page_text = {"BLK": ["Printed By", "Print Date & Time", "BLK Super Speciality Hospital Bust", "Accredited by"],
@@ -1549,7 +1556,8 @@ Ending_page_text = {"BLK": ["Printed By", "Print Date & Time", "BLK Super Specia
                     "SPARSH": "",
                     "SAILAJA MULTISPECIALITY HOSPITALS" : ["Review after 10 days"],
                     "priya nursing home" : "",
-                    "Sai Siddhi" : ["saisiddhihospital2019@gmail.com", "www.saisiddhihospital.com"]
+                    "Sai Siddhi" : ["saisiddhihospital2019@gmail.com", "www.saisiddhihospital.com"],
+                    "AIMS" : ["Page", "Opp. APSRTC Depot, Atmakur, SPSR Nellore Dist. A.P., India"],
                     }
 
 others_exception = ["Printed By", 'AdmitByPersonRelati', 'For appointments or other details call on',
