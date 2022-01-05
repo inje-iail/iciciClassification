@@ -2,7 +2,7 @@ import json
 
 import pandas as pd
 import re
-
+# from dash import create_app
 def remove_dates(date_data):
 
     date_data = re.sub(r'(\d)\s+(\d)', r'\1\2', date_data)
@@ -49,35 +49,33 @@ def icr_aadhaar(json_data):
     for text in data.text:
         aadhar_text = aadhar_text + " " + text.replace(" ","")
 
-    print("aadhar_text",aadhar_text)
-
     numbers = re.findall('[0-9]+', aadhar_text)
 
     for num in numbers:
         if len(num) == 6:
             pincode.append(num)
     pincode = list(dict.fromkeys(pincode))
-    # for pin in pincode:
-    #
-    #     try:
-    #         app = create_app()
-    #         df_pin = pd.read_csv(app.config['DATASET_PATH'] + "/" + app.config['PINCODE'], encoding="ISO-8859-1").applymap(str)
-    #         cols = ["Pincode", "City", "StateName"]
-    #         proper_pin = df_pin[cols]
-    #         match_pin = proper_pin[proper_pin['Pincode'].str.match(pin)]
-    #         final_city = match_pin["City"].iloc[0].title()
-    #         final_state = match_pin["StateName"].iloc[0].title()
-    #         # print(final_state)
-    #         aadhar_data[6] = final_state.upper().lstrip()
-    #         aadhar_data[5] = final_city.upper().lstrip()
-    #         aadhar_data[7] = pin
-    #
-    #     except IndexError:
-    #         pass
+    for pin in pincode:
+
+        try:
+            # app = create_app()
+            df_pin = pd.read_csv("Pincode_database (1).csv", encoding="ISO-8859-1").applymap(str)
+            cols = ["Pincode", "City", "StateName"]
+            proper_pin = df_pin[cols]
+            match_pin = proper_pin[proper_pin['Pincode'].str.match(pin)]
+            final_city = match_pin["City"].iloc[0].title()
+            final_state = match_pin["StateName"].iloc[0].title()
+            # print(final_state)
+            aadhar_data[6] = final_state.upper().lstrip()
+            aadhar_data[5] = final_city.upper().lstrip()
+            aadhar_data[7] = pin
+
+        except IndexError:
+            pass
 
 
     for i in range(len(json_data)):
-            print(str(json_data[i].get("text")))
+            # print(str(json_data[i].get("text")))
             if str(json_data[i].get("text")).replace(" ","").isdigit() and len(str(json_data[i].get("text")).replace(" ","")) == 12:
                 # print("Aadhar Number :",json_data[i].get("text"))
                 aadhar_data[0] = json_data[i].get("text").lstrip()
@@ -121,15 +119,11 @@ def icr_aadhaar(json_data):
                     father_flag = 1
             elif str(json_data[i].get("text")).upper().__contains__("ADDRESS") and 'MAIL' not in str(json_data[i].get("text")).upper() and address_flag == 0:
                 add_flag = "YES"
-                print("YES   iiiii")
                 address_flag = 1
 
 
 
                 for k in range(len(json_data)):
-                    print(str(json_data[k].get("text")))
-                    print(str(json_data[k].get("boundingBox")))
-                    print("#####################################")
                     if (k > i and abs(json_data[k].get('boundingBox')[1] - json_data[i].get('boundingBox')[7]) < 180 and \
                         abs(json_data[k].get('boundingBox')[0] - json_data[i].get('boundingBox')[6]) < 180):
                         temp.append(json_data[k].get("text"))
@@ -148,21 +142,6 @@ def icr_aadhaar(json_data):
                             #print(address_to)
                             address_flag = 1
                             break
-
-    #Custom code for pin written by inje
-    gotpininadd = False
-    temppinsrch = ""
-    for pinsrch in temp:
-        temppinsrch = temppinsrch + str(pinsrch)
-    temppinsrch = temppinsrch.replace(" ", "").strip()
-    if len(re.findall(r"\d{5,6}",temppinsrch))==1:
-        gotpininadd = True
-        gotpininadd_txt = re.findall(r"\d{5,6}", temppinsrch)[0]
-        print("gotpininadd_txt: ",gotpininadd_txt)
-
-
-
-
     if father_flag == 1:
          aadhar_data[2]=temp_name
     if to_flag =="YES":
@@ -185,7 +164,6 @@ def icr_aadhaar(json_data):
     #aadhar_data[4] = re.sub(r'[0-9]+', '', aadhar_data[4])
     aadhar_data[4] = remove_dates(aadhar_data[4])
     aadhar_image_quality=check_image_quality(aadhar_data)
-    print("aadhar_data:",aadhar_data)
 
     aadhar_json={
         "aadhar number" : aadhar_data[0],
@@ -196,16 +174,8 @@ def icr_aadhaar(json_data):
         "address line 2" : aadhar_data[4],
         "city" : aadhar_data[5],
         "state" : aadhar_data[6],
-        "pincode": ""
+        "pincode" : aadhar_data[7]
     }
-
-    # Custom COde by inje
-    if gotpininadd:
-        aadhar_json["pincode"] = gotpininadd_txt
-    else:
-        aadhar_json["pincode"] = aadhar_data[7]
-
-    print("aadhar_json_front", aadhar_json)
 
     return aadhar_json
 
@@ -234,24 +204,24 @@ def icr_aadhaar_back(json_data):
     pincode = list(dict.fromkeys(pincode))
     # print(pincode)
     # app = create_app()
-    # for pin in pincode:
-    #
-    #     try:
-    #         df_pin = pd.read_csv(app.config['DATASET_PATH'] + "/" + app.config['PINCODE'], encoding="ISO-8859-1").applymap(str)
-    #         cols = ["Pincode", "City", "StateName"]
-    #         proper_pin = df_pin[cols]
-    #         match_pin = proper_pin[proper_pin['Pincode'].str.match(pin)]
-    #         final_city = match_pin["City"].iloc[0].title()
-    #         final_state = match_pin["StateName"].iloc[0].title()
-    #         # print(final_state)
-    #         aadhar_data[6] = final_state.upper().lstrip()
-    #         aadhar_data[5] = final_city.upper().lstrip()
-    #         aadhar_data[7] = pin
-    #
-    #
-    #
-    #     except IndexError:
-    #         pass
+    for pin in pincode:
+
+        try:
+            df_pin = pd.read_csv("Pincode_database (1).csv", encoding="ISO-8859-1").applymap(str)
+            cols = ["Pincode", "City", "StateName"]
+            proper_pin = df_pin[cols]
+            match_pin = proper_pin[proper_pin['Pincode'].str.match(pin)]
+            final_city = match_pin["City"].iloc[0].title()
+            final_state = match_pin["StateName"].iloc[0].title()
+            # print(final_state)
+            aadhar_data[6] = final_state.upper().lstrip()
+            aadhar_data[5] = final_city.upper().lstrip()
+            aadhar_data[7] = pin
+
+
+
+        except IndexError:
+            pass
 
 
     for i in range(len(json_data)):
@@ -267,19 +237,11 @@ def icr_aadhaar_back(json_data):
 
             break
 
-    # Custom code for pin written by inje
-    gotpininadd = False
-    temppinsrch = ""
-    for pinsrch in temp:
-        temppinsrch = temppinsrch + str(pinsrch)
-    temppinsrch = temppinsrch.replace(" ", "").strip()
-    if len(re.findall(r"\d{5,6}", temppinsrch)) == 1:
-        gotpininadd = True
-        gotpininadd_txt = re.findall(r"\d{5,6}", temppinsrch)[0]
-        print("gotpininadd_txt: ", gotpininadd_txt)
 
 
-    print("temp_back: ",temp)
+
+
+
     for i in range(len(temp)):
         if i==0:
             aadhar_data[3]=temp[i]
@@ -298,22 +260,13 @@ def icr_aadhaar_back(json_data):
         "address line 2": aadhar_data[4],
         "city": aadhar_data[5],
         "state": aadhar_data[6],
-        "pincode": ""
+        "pincode": aadhar_data[7]
     }
 
-    # Custom COde by inje
-    if gotpininadd:
-        aadhar_json["pincode"] = gotpininadd_txt
-    else:
-        aadhar_json["pincode"] = aadhar_data[7]
-
-    print("aadhar_json", aadhar_json)
-
     return aadhar_json
-
-f = open(r"F:\iAssist_Projects\iciciClassification\all_bill.json", "r")
-
-# Reading from file
-json_list = json.loads(f.read())
-icr_aadhaar(json_list["fcc58eeb-2bb7-469f-9073-b987be2caeb114.jpg"])
-icr_aadhaar_back(json_list["fcc58eeb-2bb7-469f-9073-b987be2caeb114.jpg"])
+# f = open(r"F:\iAssist_Projects\iciciClassification\all_bill.json", "r")
+#
+# # Reading from file
+# json_list = json.loads(f.read())
+# print("front :",icr_aadhaar(json_list["fcc58eeb-2bb7-469f-9073-b987be2caeb114.jpg"]))
+# print("back :",icr_aadhaar_back(json_list["fcc58eeb-2bb7-469f-9073-b987be2caeb114.jpg"]))

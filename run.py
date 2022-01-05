@@ -8,7 +8,7 @@ from datetime import date
 
 from moduletest import classify
 from pan_int import icr_pan
-from aadhar_int import icr_aadhaar, icr_aadhaar_back
+from aadhar_int_updated import icr_aadhaar, icr_aadhaar_back
 # from dischargeSum import dis_sum
 from Discharge_summary_seshu import run_dis_sum
 from claim_form import claim_form_extract
@@ -208,7 +208,7 @@ while True:
 
 
 
-        if "pan" in list(final.keys()) or "aadhar" in list(final.keys()):
+        if "pan" in list(final.keys()) or "aadhar" in list(final.keys()) or "policyidcard" in list(final.keys()):
             summary["ID Type"] = []
             if "pan" in list(final.keys()):
                 summary["ID Type"].append("pan")

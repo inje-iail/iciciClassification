@@ -1,8 +1,50 @@
 {
-  "discharge_summary": {
-    "patient name": ". Mas Dimple Bhargav Prajapen. Sex / Age f 23 45",
-    "address": "Aso palau society. vantra.",
-    "date of admission": "L. 12. 20",
-    "date of discharge": "20 12 . 2 2 Prim. ' N. P. OL"
+  "aadhar": {
+    "front": {
+      "aadhar number": "4565 3877 5778",
+      "dob": "01/06/1994",
+      "name": "Suganaben Dineshbhai Chaudhary",
+      "full_address": "SUGANABEN DINESHBHAI CHAUDHARY JORAPURA DHAKHA JORAPURA (DHAKHA) DHANERA DHANERA BANASKANTHA GUJARAT",
+      "address line 1": "SUGANABEN DINESHBHAI CHAUDHARY JORAPURA DHAKHA",
+      "address line 2": "JORAPURA (DHAKHA) DHANERA DHANERA BANASKANTHA GUJARAT",
+      "city": "BANASKANTHA",
+      "state": "GUJARAT",
+      "pincode": "385310"
+    },
+    "back": {
+      "aadhar number": "",
+      "dob": "",
+      "name": "",
+      "full_address": " ",
+      "address line 1": "",
+      "address line 2": "",
+      "city": "BANASKANTHA",
+      "state": "GUJARAT",
+      "pincode": "385310"
+    }
+  },
+  "aadhar2": {
+    "front": {
+      "aadhar number": "4565 3877 5778",
+      "dob": "",
+      "name": "",
+      "full_address": " ",
+      "address line 1": "",
+      "address line 2": "",
+      "city": "BANASKANTHA",
+      "state": "GUJARAT",
+      "pincode": "385310"
+    },
+    "back": {
+      "aadhar number": "",
+      "dob": "",
+      "name": "",
+      "full_address": "Dhakha). Dhanera. Banaskantha, Gujarat. ",
+      "address line 1": "Dhakha). Dhanera. Banaskantha, Gujarat.",
+      "address line 2": "",
+      "city": "BANASKANTHA",
+      "state": "GUJARAT",
+      "pincode": "385310"
+    }
   }
 }
