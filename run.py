@@ -214,6 +214,8 @@ while True:
                 summary["ID Type"].append("pan")
             if "aadhar" in list(final.keys()):
                 summary["ID Type"].append("aadhar")
+            if "policyidcard" in list(final.keys()):
+                summary["ID Type"].append("policyidcard")
         if summary["Date of Admission"] != "" and summary["Date of discharge"] != "":
             if len(re.findall(r"\d{2}\/\d{2}\/\d{2,4}", summary["Date of Admission"])) == 1 and len(re.findall(r"\d{2}\/\d{2}\/\d{2,4}", summary["Date of discharge"])) == 1:
                 summary["Date of Admission"] = re.findall(r"\d{2}\/\d{2}\/\d{2,4}", summary["Date of Admission"])[0]
