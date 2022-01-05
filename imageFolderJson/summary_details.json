@@ -1,0 +1,32 @@
+{
+  "Hospital Name": [],
+  "Hospital Contact no": [],
+  "Hospital pincode": [],
+  "Hospital city": [],
+  "Hospital state": [],
+  "Hospital Address": [],
+  "Medical Practitioner Name": [],
+  "Doctor Contact no": [],
+  "Clinical Specialization": [],
+  "Date of Admission": [
+    {
+      "discharge_summary": "L. 12. 20"
+    },
+    {
+      "Selected": "discharge_summary"
+    }
+  ],
+  "Date of discharge": [
+    {
+      "discharge_summary": "20 12 . 2 2 Prim. ' N. P. OL"
+    },
+    {
+      "Selected": "discharge_summary"
+    }
+  ],
+  "Name as per ID": [],
+  "DOB": [],
+  "Address as per ID": [],
+  "PAN number": [],
+  "Adhaar number": []
+}

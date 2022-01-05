@@ -1,6 +1,9 @@
 import json
 import os
 import random
+import re
+
+from fuzzywuzzy import fuzz
 
 from moduletest import get_icr_data_from_image, converting_to_image
 
@@ -36,7 +39,7 @@ def jsonslist(img_dir):
 
     return json_list
 
-# json_list = jsonslist(r"F:\iAssist_Projects\iciciClassification\listen")
+# json_list = jsonslist(r"F:\iAssist_Projects\iciciClassification\imgsfolders\f3dd9d5c-208a-4e59-9f28-4793183ffda6")
 
 def claim_form_extract(jsonpath):
 
@@ -111,13 +114,13 @@ def claim_form_extract(jsonpath):
             "Address","Room"
         ],
         "hospital_address": [
-            "treating Medical","Telephone"
+            "treating Medical","Mobile no"
         ],
         "hospital_telephone": [
             "Mobile"
         ],
         "hospital_mobile": [
-            "ROHINI","Hospital"
+            "ROHINI","Hospital","Details"
         ],
         "rohini_id": [
             "Hospital","Type"
@@ -439,6 +442,11 @@ def claim_form_extract(jsonpath):
                                     result["hospital_state"] = hos_detail.split("Pincode")[0].strip("-: .")
                                     hos_detail = hos_detail.split("Pincode")[1].strip("-: .")
                                     result["hospital_pincode"] = hos_detail
+                                if "Telephone" in result["hospital_pincode"]:
+                                    txtt = result["hospital_pincode"].split("Telephone")
+                                    result["hospital_pincode"] = txtt[0].strip("-: .")
+                                    result["hospital_telephone"] = txtt[1].strip("-: .")
+
 
 
                             break
@@ -453,8 +461,33 @@ def claim_form_extract(jsonpath):
 
     # with open(jsonpath.replace("\jsonslist.json", "")+"/result.json", "w") as outfile:
     #     json.dump(result, outfile)
+
+    # Standardization of Final Output
+    if "hospital_address" in list(result.keys()) and not "hospital_pincode" in list(result.keys()):
+        regex = "\d{5,6}"
+        match = re.findall(regex, result["hospital_address"])
+        if len(match) == 1:
+            result["hospital_pincode"] = match[0]
+
+    states = ["Andhra Pradesh", "Arunachal Pradesh ", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana",
+     "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra",
+     "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu",
+     "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal", "Andaman and Nicobar Islands", "Chandigarh",
+     "Dadra and Nagar Haveli", "Daman and Diu", "Lakshadweep", "National Capital Territory of Delhi", "Puducherry"]
+    if "hospital_address" in list(result.keys()):
+        for state in states:
+            choice =  result["hospital_address"].lower().split(" ")
+            print("fuzzzz",fuzz.partial_token_sort_ratio(state.lower(), choice))
+            if state.lower() in result["hospital_address"].lower():
+                result["hospital_state"] = state
+            elif fuzz.partial_token_sort_ratio(state.lower(), choice) > 40:
+                result["hospital_state"] = state
+                print("yes  ",result["hospital_state"])
+                break
+
+
     return result
 
 
-# claim_form_extract(r"F:\iAssist_Projects\iciciClassification\listen\jsonslist.json")
+# claim_form_extract(r"F:\iAssist_Projects\iciciClassification\imgsfolders\f3dd9d5c-208a-4e59-9f28-4793183ffda6\jsonslist.json")
 

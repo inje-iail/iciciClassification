@@ -634,7 +634,10 @@ def run_dis_sum(save_path):
         elif key_final in ["b department/specialty"]:
             final["Department Specialty"] = result[key]
 
-        final["hospital name"] = hos
+        if isinstance(hos, list) == False:
+            final["hospital name"] = hos
+        if isinstance(hos, list) == True:
+            final["hospital name"] = ""
 
 
 

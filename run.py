@@ -1,7 +1,11 @@
+from datetime import datetime
 import json
 import os
+import re
 import shutil
 import time
+from datetime import date
+
 from moduletest import classify
 from pan_int import icr_pan
 from aadhar_int import icr_aadhaar, icr_aadhaar_back
@@ -113,6 +117,8 @@ while True:
                     print(res_policyidcard)
                     final["policyidcard"] = res_policyidcard
 
+
+
         with open("final.json", "w") as outfile:
             json.dump(final, outfile)
 
@@ -120,9 +126,9 @@ while True:
         #  summary result >>>>>>>>>>>>>>>>>>>>>>>>>>
 
         temp_summary = {
-            "Hospital Name": {"claimform": "hospital_name", "discharge_summary": "hospital name"},
+            "Hospital Name": {"discharge_summary": "hospital name", "claimform": "hospital_name"},
             "ROHINI ID": "",
-            "Hospital Contact no": {"claimform": "hospital_mobile"},
+            "Hospital Contact no": {"claimform": "hospital_mobile", "claimform": "hospital_telephone"},
             "Hospital Email id": "",
             "Hospital pincode": {"claimform": "hospital_pincode"},
             "Hospital city": {"claimform": "hospital_city"},
@@ -138,8 +144,8 @@ while True:
             "Length of stay in hospital": "",
 
             "ID Type": "",
-            "Name as per ID": {"pan": "full_name", "aadhar": "name"},
-            "DOB":{"aadhar": "dob", "pan": "dob", "claimform": "dob"},
+            "Name as per ID": {"pan": "full_name", "aadhar": "name", "policyidcard": "name"},
+            "DOB":{"aadhar": "dob", "pan": "dob", "claimform": "dob", "policyidcard": "DOB"},
             "Address as per ID": {"aadhar": "full_address"},
             "PAN number": {"pan": "pan_number"},
             "Adhaar number": {"aadhar": "aadhar number", "claimform": "claimant_aadhar_no"},
@@ -157,7 +163,7 @@ while True:
                         if doc2check == "aadhar":
                             for fb in final[doc2check]:
                                 print(">>>",fb,temp_summary[fld][doc2check])
-                                if final[doc2check][fb][temp_summary[fld][doc2check]] != "":
+                                if final[doc2check][fb][temp_summary[fld][doc2check]] != "" and not "ELECTRONICALLY" in final[doc2check][fb][temp_summary[fld][doc2check]].upper():
                                     temp_summary_detail[str(fld)] = doc2check
                                     summary[fld] = final[doc2check][fb][temp_summary[fld][doc2check]]
                                     break
@@ -169,6 +175,10 @@ while True:
                                 break
                     # else:
                     #     break
+
+        for f in temp_summary:
+            if not f in list(summary.keys()):
+                summary[f] = ""
 
         # For Detailed Summary >>>>>>>>>>>>>>>>>>>>
         for fld in temp_summary:
@@ -189,6 +199,7 @@ while True:
                             if temp_summary[fld][doc2check] in list(final[doc2check].keys()) and final[doc2check][temp_summary[fld][doc2check]] != "":
                                 summary_detail[fld].append({doc2check: final[doc2check][temp_summary[fld][doc2check]]})
                                 print("oo ", final[doc2check][temp_summary[fld][doc2check]])
+                                print("list1:",summary_detail[fld])
 
         for fld in summary_detail:
             if summary_detail[fld] != []:
@@ -203,15 +214,62 @@ while True:
                 summary["ID Type"].append("pan")
             if "aadhar" in list(final.keys()):
                 summary["ID Type"].append("aadhar")
+        if summary["Date of Admission"] != "" and summary["Date of discharge"] != "":
+            if len(re.findall(r"\d{2}\/\d{2}\/\d{2,4}", summary["Date of Admission"])) == 1 and len(re.findall(r"\d{2}\/\d{2}\/\d{2,4}", summary["Date of discharge"])) == 1:
+                summary["Date of Admission"] = re.findall(r"\d{2}\/\d{2}\/\d{2,4}", summary["Date of Admission"])[0]
+                summary["Date of discharge"] = re.findall(r"\d{2}\/\d{2}\/\d{2,4}", summary["Date of discharge"])[0]
+
+                if int(summary["Date of discharge"].split("/")[1]) > 12:
+                    im = summary["Date of discharge"].split("/")[1]
+                    nm = "0"+im[-1]
+                    summary["Date of discharge"] = summary["Date of discharge"].replace(im, nm)
+
+                if int(summary["Date of Admission"].split("/")[1]) > 12:
+                    im = summary["Date of Admission"].split("/")[1]
+                    nm = "0"+im[-1]
+                    summary["Date of Admission"] = summary["Date of Admission"].replace(im, nm)
+
+                try:
+                    date_format = "%d/%m/%Y"
+                    d1 = datetime.strptime(summary["Date of Admission"], date_format)
+                    d0 = datetime.strptime(summary["Date of discharge"], date_format)
+                    delta = d1 - d0
+                    summary["Length of stay in hospital"] = str(delta.days) + " Days"
+                    print("Length of stay in hospital",delta.days)
+                except:
+                    pass
+
+            elif len(re.findall(r"\d{2}\-\d{2}\-\d{2,4}", summary["Date of Admission"])) == 1 and len(re.findall(r"\d{2}\-\d{2}\-\d{2,4}", summary["Date of discharge"])) == 1:
+                summary["Date of Admission"] = re.findall(r"\d{2}\-\d{2}\-\d{2,4}", summary["Date of Admission"])[0]
+                summary["Date of discharge"] = re.findall(r"\d{2}\-\d{2}\-\d{2,4}", summary["Date of discharge"])[0]
+
+                if int(summary["Date of discharge"].split("-")[1]) > 12:
+                    im = summary["Date of discharge"].split("-")[1]
+                    nm = "0"+im[-1]
+                    summary["Date of discharge"] = summary["Date of discharge"].replace(im, nm)
+
+                if int(summary["Date of Admission"].split("-")[1]) > 12:
+                    im = summary["Date of Admission"].split("-")[1]
+                    nm = "0"+im[-1]
+                    summary["Date of Admission"] = summary["Date of Admission"].replace(im, nm)
+
+                try:
+                    date_format = "%d-%m-%Y"
+                    d1 = datetime.strptime(summary["Date of Admission"], date_format)
+                    d0 = datetime.strptime(summary["Date of discharge"], date_format)
+                    delta = d1 - d0
+                    summary["Length of stay in hospital"] = str(delta.days) + " Days"
+                    print("Length of stay in hospital",delta.days)
+                except:
+                    pass
+
 
         print(">>>>>>>>>")
         print("sum", summary)
         with open("summary.json", "w") as outfile:
             json.dump(summary, outfile)
-        with open("imageFolderJson/summary_details.json", "w") as outfile:
-            json.dump(summary_detail, outfile)
-        print(">>>>>>>>>")
-        print("sum", summary_detail)
+
+
 
         # generationg json for all result
         for filename in os.listdir("imageFolderJson"):
@@ -223,6 +281,11 @@ while True:
             json.dump(summary, outfile)
         with open("imageFolderJson/" + "final.json", "w") as outfile:
             json.dump(final, outfile)
+
+        with open("imageFolderJson/summary_details.json", "w") as outfile:
+            json.dump(summary_detail, outfile)
+        print(">>>>>>>>>")
+        print("sum", summary_detail)
 
 
 
