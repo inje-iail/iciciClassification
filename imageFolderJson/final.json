@@ -1,50 +1,75 @@
 {
+  "claimform": {
+    "uin_no": "ICIPAGP18102V011718",
+    "policy_no": "COZ 2008) 7/708472570000902 , 4148/203724585/00",
+    "policyholder_name": "RAKESH KUMAR",
+    "dob": "22 / 1)/ 1989",
+    "insured_person_aadhar_no": "6805 360.9 7394",
+    "relationship_of_claimant_with_insured_person": "_ Self",
+    "address_for_communication": "ULNP, VPO - GLNP. Diss & Teh - Sriganganagar, Rajasthan - 3350 01",
+    "claiment_contact_no": "9610 0 0 0 89 8/ Res. No",
+    "claiment_email_id": "ghotelatakesh @ gmail. com",
+    "claimant_aadhar_no": "6805 3609 7394 ",
+    "claim_no": "BAF043586365",
+    "branch_name:": "_SADULSHAHAR BRANCH",
+    "bank_address": "BADULSHAHAR , SRIGANGANALA R - 335062 ",
+    "IFSC_code": "CNRBQ00543_7_(should be same as per the provided cheque leaflet)",
+    "Name of the Insured Person/claimant/Nominee": "RAKESH KUMAR ",
+    "Relation with the Insured Person": "SELF ",
+    "Place": "Srigangamagaz",
+    "Date": "",
+    "hospital_name": "SHREE RAM HOSPITAL",
+    "hospital_address": "43 - () BLOCK , SHIV PARK, SRIGANGANAGAR -335001",
+    "treating_dr_details": "DZ. RAJEEB KUMAR",
+    "treating_medical_practitioner": "DZ. RAJEEB KUMAR",
+    "nature_of_injury/illness": "Dengue fever. ",
+    "particulars_of_treatment": "",
+    "admission_date_time": "24 /11 / 2020 Time: 1 1 AM/PM",
+    "discharge_date_time": "28 /11 /2020 Time: 08 AM/PM",
+    "number_of_days_in_iCU_(if_any)": "",
+    "maternal_complication_(if_any)": "",
+    "claimant/insured_person's_name(as_per_bank_records": "RAKESH KUMAR ",
+    "claimant/insured_person's_bank_account_no": "5437136000021",
+    "name_of_the_bank": "CANARA BANK",
+    "hospital_pincode": "335001"
+  },
+  "cancelledcheque": {
+    "bank_name": "CANARA BANK",
+    "ifsc": "CNRBOO05437",
+    "name": "",
+    "account_no": "",
+    "name_present": false,
+    "micr_code": ""
+  },
   "aadhar": {
     "front": {
-      "aadhar number": "4565 3877 5778",
-      "dob": "01/06/1994",
-      "name": "Suganaben Dineshbhai Chaudhary",
-      "full_address": "SUGANABEN DINESHBHAI CHAUDHARY JORAPURA DHAKHA JORAPURA (DHAKHA) DHANERA DHANERA BANASKANTHA GUJARAT",
-      "address line 1": "SUGANABEN DINESHBHAI CHAUDHARY JORAPURA DHAKHA",
-      "address line 2": "JORAPURA (DHAKHA) DHANERA DHANERA BANASKANTHA GUJARAT",
-      "city": "BANASKANTHA",
-      "state": "GUJARAT",
-      "pincode": "385310"
+      "aadhar number": "6805 3609 7394",
+      "dob": "01/01/1989",
+      "name": "Rakesh Kumar",
+      "full_address": "RAKESH KUMAR S/O KRISHAN LAL DOWNLOAD DATE:  BAJIGAR MOHALA LNP SRIGANGANAGAR GANGANAGAR RAJASTHAN -",
+      "address line 1": "RAKESH KUMAR S/O KRISHAN LAL",
+      "address line 2": "DOWNLOAD DATE:  BAJIGAR MOHALA LNP SRIGANGANAGAR GANGANAGAR RAJASTHAN -",
+      "city": "SRI GANGANAGAR",
+      "state": "RAJASTHAN",
+      "pincode": "335001"
     },
     "back": {
       "aadhar number": "",
       "dob": "",
       "name": "",
-      "full_address": " ",
-      "address line 1": "",
-      "address line 2": "",
-      "city": "BANASKANTHA",
-      "state": "GUJARAT",
-      "pincode": "385310"
+      "full_address": "S/O Krishan Lal, BAJIGAR MOHALA, 4 LNP. Issue Date:  Gangaragar Rajasthan -",
+      "address line 1": "S/O Krishan Lal, BAJIGAR MOHALA, 4 LNP.",
+      "address line 2": "Issue Date:  Gangaragar Rajasthan -",
+      "city": "SRI GANGANAGAR",
+      "state": "RAJASTHAN",
+      "pincode": "335001"
     }
   },
-  "aadhar2": {
-    "front": {
-      "aadhar number": "4565 3877 5778",
-      "dob": "",
-      "name": "",
-      "full_address": " ",
-      "address line 1": "",
-      "address line 2": "",
-      "city": "BANASKANTHA",
-      "state": "GUJARAT",
-      "pincode": "385310"
-    },
-    "back": {
-      "aadhar number": "",
-      "dob": "",
-      "name": "",
-      "full_address": "Dhakha). Dhanera. Banaskantha, Gujarat. ",
-      "address line 1": "Dhakha). Dhanera. Banaskantha, Gujarat.",
-      "address line 2": "",
-      "city": "BANASKANTHA",
-      "state": "GUJARAT",
-      "pincode": "385310"
-    }
-  }
+  "pan": {
+    "full_name": "RAKESH KUMAR",
+    "father_name": "KRISHAN LAL",
+    "dob": "22/13/1989",
+    "pan_number": "DCIPK1653Q"
+  },
+  "discharge_summary": {}
 }

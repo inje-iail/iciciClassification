@@ -39,7 +39,7 @@ def jsonslist(img_dir):
 
     return json_list
 
-# json_list = jsonslist(r"F:\iAssist_Projects\iciciClassification\imgsfolders\f3dd9d5c-208a-4e59-9f28-4793183ffda6")
+# json_list = jsonslist(r"F:\iAssist_Projects\iciciClassification\imgsfolders\cbb785a2-1bf5-4937-bcce-6f82cb98c725")
 
 def claim_form_extract(jsonpath):
 
@@ -179,6 +179,9 @@ def claim_form_extract(jsonpath):
         "kyc_contact_no": [
             "PAN", "Pan", "KYC","IRDA", "Circular"
         ],
+        "hos_details": [
+            ""
+        ]
     }
 
     present_keys = {
@@ -314,6 +317,9 @@ def claim_form_extract(jsonpath):
         "kyc_contact_no": [
             "Mobile/ Contact No. ;", "Mobile/ Contact No. :", "Mobile/ Contact No.:"
         ],
+        "hos_details" : [
+            "B1. Details of the Hospital/ Nursing home in which treatment was taken"
+        ]
     }
 
     result = {}
@@ -331,6 +337,10 @@ def claim_form_extract(jsonpath):
                 # n_bb = json_data[i+1].get("boundingBox")
                 # print(c_bb[2] , n_bb[0])
 
+                # if ext_fld == "hos_details":
+
+
+
 
                 if visited[ext_fld] == False and json_data[i].get("text") in present_keys[ext_fld] and ext_fld in listofunique:
                     print("iiiiiiii")
@@ -344,9 +354,10 @@ def claim_form_extract(jsonpath):
                             for brk in stopkey[ext_fld]:
                                 if brk in json_data[j].get("text"):
                                     brk_flag = True
+                                    print("brked", brk)
                             if brk_flag:
                                 break
-                            for b in ["city", "state"]:
+                            for b in ["city", "state", "Pincode", "Telephone no"]:
                                 if b in json_data[j].get("text").lower():
                                     ky = "hospital_" + b.lower()
                                     result[ky] = ""
@@ -441,23 +452,20 @@ def claim_form_extract(jsonpath):
                                 if "Pincode" in hos_detail:
                                     result["hospital_state"] = hos_detail.split("Pincode")[0].strip("-: .")
                                     hos_detail = hos_detail.split("Pincode")[1].strip("-: .")
+                                    print(hos_detail)
                                     result["hospital_pincode"] = hos_detail
-                                if "Telephone" in result["hospital_pincode"]:
-                                    txtt = result["hospital_pincode"].split("Telephone")
+                                    visited["hospital_pincode"] = True
+                                if "Telephone" in hos_detail:
+                                    txtt = hos_detail.split("Telephone")
                                     result["hospital_pincode"] = txtt[0].strip("-: .")
                                     result["hospital_telephone"] = txtt[1].strip("-: .")
+                                    visited["hospital_telephone"]=True
 
 
 
                             break
 
-    print("###########################")
-    for q in result:
-        print(q, "--->", result[q])
-    print("###########################")
-    for q in visited:
-        if visited[q] == False:
-            print(q, "--->", visited[q])
+
 
     # with open(jsonpath.replace("\jsonslist.json", "")+"/result.json", "w") as outfile:
     #     json.dump(result, outfile)
@@ -480,14 +488,21 @@ def claim_form_extract(jsonpath):
             print("fuzzzz",fuzz.partial_token_sort_ratio(state.lower(), choice))
             if state.lower() in result["hospital_address"].lower():
                 result["hospital_state"] = state
-            elif fuzz.partial_token_sort_ratio(state.lower(), choice) > 40:
+            elif fuzz.ratio(state.lower(), choice) > 70:
                 result["hospital_state"] = state
                 print("yes  ",result["hospital_state"])
                 break
 
+    print("###########################")
+    for q in result:
+        print(q, "--->", result[q])
+    print("###########################")
+    for q in visited:
+        if visited[q] == False:
+            print(q, "--->", visited[q])
 
     return result
 
 
-# claim_form_extract(r"F:\iAssist_Projects\iciciClassification\imgsfolders\f3dd9d5c-208a-4e59-9f28-4793183ffda6\jsonslist.json")
+# claim_form_extract(r"F:\iAssist_Projects\iciciClassification\imgsfolders\cbb785a2-1bf5-4937-bcce-6f82cb98c725\jsonslist.json")
 
